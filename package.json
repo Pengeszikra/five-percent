@@ -1,0 +1,9 @@
+{
+  "name": "five-percent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tests/serve.mjs",
+    "test": "node tests/math.mjs && node tests/smoke.mjs"
+  }
+}
