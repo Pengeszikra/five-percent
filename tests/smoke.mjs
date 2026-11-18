@@ -27,7 +27,7 @@ page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 let failed = 0;
 const check = (name, ok, info = '') => { console.log(`${ok ? 'ok  ' : 'FAIL'} ${name}${info ? ' — ' + info : ''}`); if (!ok) failed++; };
 
-await page.goto(`http://localhost:${port}/?emulate`);
+await page.goto(`http://localhost:${port}/emulator.html?emulate`);
 check('navigator.xr exists', await page.evaluate(() => !!navigator.xr));
 check('immersive-vr supported', await page.evaluate(() => navigator.xr.isSessionSupported('immersive-vr')));
 check('inline not supported', !(await page.evaluate(() => navigator.xr.isSessionSupported('inline'))));

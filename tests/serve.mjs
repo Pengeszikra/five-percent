@@ -11,4 +11,4 @@ createServer(async (req, res) => {
     if (!f.startsWith(root)) throw 0;
     res.writeHead(200, { 'content-type': types[extname(f)] ?? 'text/plain' }).end(await readFile(f));
   } catch { res.writeHead(404).end('not found'); }
-}).listen(5174, () => console.log('http://localhost:5174/?emulate'));
+}).listen(5174, () => console.log('http://localhost:5174/ (the app) · http://localhost:5174/emulator.html?emulate (the emulator demo)'));

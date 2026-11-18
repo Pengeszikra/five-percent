@@ -4,6 +4,11 @@
   "type": "module",
   "scripts": {
     "start": "node tests/serve.mjs",
-    "test": "node tests/math.mjs && node tests/smoke.mjs"
+    "test": "node tests/math.mjs && node tests/smoke.mjs",
+    "sync": "node scripts/from-spider.mjs ../spider-paint"
+  },
+  "description": "Fifth Percent: a VR starship and workshop on the 3Draft engine (Spider Paint inside), with a dependency-free WebXR emulator. A static site with two Vercel functions (api/).",
+  "dependencies": {
+    "@vercel/blob": "^2.3.0"
   }
 }
