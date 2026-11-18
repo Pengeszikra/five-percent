@@ -12,7 +12,7 @@ Branch: `main`. Status: the competition entry is being handed in. The app is **S
 | `src/emulator/devices.js` | Meta Quest 3 and 2 profiles: per-eye FOV, eye distance, resolution, refresh rates |
 | `src/math.js` | small vector/matrix helpers (no libraries) |
 | `index.html`, `engine/`, `models/`, `player.html`, `sky.html`, `api/`, `icons/`, `media/`, `sw.js`, … | the app: Spider Paint, **generated** by `npm run sync` (never edit them here; change 3Draft, release Spider Paint, sync again) |
-| `scripts/from-spider.mjs` | the sync: copies Spider Paint and keeps only the scenes in its `SCENES` list (and their model files); trims the scene list, the Exa menu and the service worker's offline list |
+| `scripts/from-spider.mjs` | the sync: copies Spider Paint and keeps only the scenes in its `SCENES` list (and their model files); trims the scene list, the Exa menu and the service worker's offline list; sets the starting scene (`START`, `game:lark`), VR with the hands only (`XR_HANDS_ONLY`) and VR at once on a headset (`XR_AUTO`, `?novr` turns it off) |
 | `src/demo.js` + `emulator.html` | the emulator's demo scene; renders **only through the WebXR API**, so it also runs on a real headset |
 | `tests/math.mjs` | maths unit tests |
 | `tests/smoke.mjs` | headless Chromium test of the emulator (Playwright) |

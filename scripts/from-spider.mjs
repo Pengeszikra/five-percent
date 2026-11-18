@@ -23,6 +23,8 @@ const SCENES = [
   ['story:lark-4c-accident', 'Story: Last Light (LARK-4C)', ['lark-4c-accident.build.json', 'lark-4c-accident.scene.json']],
   ['story:lark-4', 'Story: LARK build (746 steps)', ['lark-4.build.json']],
 ];
+// the scene it starts with
+const START = 'game:lark';
 const MODEL_TOOLS = ['spider-build-v2.mjs', 'spider-build-v2.md', 'spider-build-v2.schema.json'];
 const FILES = ['index.html', 'player.html', 'PLAYER.md', 'sky.html', 'sky.md', 'help.md', 'favicon.svg', 'manifest.webmanifest', 'sw.js', 'MCP.md', 'xr-test.html', 'xr-compare.html'];
 const DIRS = ['engine', 'icons', 'media', 'api'];
@@ -52,6 +54,13 @@ edit('index.html', [
   ['scene list', /(<option value="">\+ scene<\/option>\n)[\s\S]*?(\s*<optgroup id="savedGroup")/, (_, head, tail) =>
     `${head}${plain.map((s) => `        ${opt(s)}\n`).join('')}        <optgroup label="games">${games.map(opt).join('')}</optgroup>\n        <optgroup label="stories">${stories.map(opt).join('')}</optgroup>${tail}`],
   ['exa menu', /for \(const name of \['empty', 'globe'[^\]]*\]\)/, `for (const name of ['empty', ${plain.map(([v]) => `'${v}'`).join(', ')}])`],
+  // VR with the hands only: the controllers are ignored
+  ['hands only', "const XR_HANDS_ONLY = new URLSearchParams(location.search).has('handsonly');", 'const XR_HANDS_ONLY = true; // (Fifth Percent: the hands only)'],
+  // on a headset VR starts by itself (?novr: not)
+  ['auto vr', "const XR_AUTO = new URLSearchParams(location.search).has('autovr');", "const XR_AUTO = !new URLSearchParams(location.search).has('novr'); // (Fifth Percent: on a headset, VR at once)"],
+  // the starting scene: START (?scene=… another one, ?empty nothing)
+  ['start scene', "else if (!EMBED && !SHOW && new URLSearchParams(location.search).has('deepsky'))\n      (startScene = 'deepsky'), setTimeout(() => withLoader('deepsky', async () => loadScene(await sceneOf('deepsky'), true)).then(() => targetByName(linkTarget)).catch((e) => sceneNote(`scene: ${e.message}`)), 0);",
+    `else if (!EMBED && !SHOW && !new URLSearchParams(location.search).has('empty'))\n      setTimeout(() => addExample('${START}').then(() => targetByName(linkTarget)).catch((e) => sceneNote(\`scene: \${e.message}\`)), 0);`],
 ]);
 // the offline list: only what is here; its own cache name (Spider Paint's version number kept, so a new sync renews it)
 edit('sw.js', [

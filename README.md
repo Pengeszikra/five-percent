@@ -15,7 +15,10 @@ engine's viewer and editor, with the scenes Fifth Percent ships:
 - Story: Last Light (LARK-4C)
 - Story: LARK build (746 steps)
 
-Open the page, pick a scene in **+ scene**, press **VR** on a headset. The VR hands, the starship and the workshop are described
+It starts with **LARK + Deep Sky**. On a headset's browser (Meta Quest) VR starts by itself: the browser is offered the
+session at once (its own Enter VR) and the page shows a full-screen **ENTER VR** (one tap or pinch). In VR only the **hands**
+count (hand tracking; controllers are ignored). `?novr` keeps the page flat, `?empty` starts with nothing, `?scene=<value>`
+with another scene of the list. Pick another scene in **+ scene**; **VR** enters again. The VR hands, the starship and the workshop are described
 in 3Draft's `VR-WORKSHOP.md` and `VRTSH.md`; the embeddable player in `PLAYER.md`; the sky in `sky.md`.
 
 It is a static site with two Vercel functions in `api/` (the online scene store, which also takes the in-VR debug reports, and
